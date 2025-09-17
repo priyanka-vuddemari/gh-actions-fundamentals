@@ -6,4 +6,5 @@ jobs :
       runs-on : unbuntu-latest
       steps :
         - name : Show the event that triggered this workflow
-          run  : cat $GITHUB_EVENT_PATH
+          run  : |
+                echo "Event name: ${{ github.event_name }}"   
