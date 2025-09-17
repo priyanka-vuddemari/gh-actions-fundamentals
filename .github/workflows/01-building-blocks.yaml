@@ -16,4 +16,4 @@ jobs:
         echo "This step will succeed"
         exit 0
     - name : Say goodbye
-      run : echo "Goodbye!""
+      run : echo "Goodbye!"
