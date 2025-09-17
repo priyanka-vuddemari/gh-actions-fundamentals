@@ -4,14 +4,14 @@ on :  workflow_dispatch
 
 jobs: 
     ubuntu-echo: 
-        runs-on : unbuntu-latest
+        runs-on : unbuntu-22.04
         steps :
             - name : Show the runner OS
               run  : |
                         echo "This job is running on Ubuntu"
                         echo "Runner OS: ${{ runner.os }}"
     windows-echo: 
-        runs-on : windows-latests
+        runs-on : windows-latest
         steps :
             - name : Show the runner OS
               run  : |
