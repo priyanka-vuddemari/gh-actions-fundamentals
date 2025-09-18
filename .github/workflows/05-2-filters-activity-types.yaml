@@ -12,4 +12,4 @@ jobs:
         runs-on : ubuntu-latest
         steps : 
             - name : Echoing message
-              run : echo "This job runs only on pull_request event when activity type is closed and
+              run : echo "This job runs only on pull_request event when activity type is closed and brach is main"
