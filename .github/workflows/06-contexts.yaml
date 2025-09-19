@@ -8,9 +8,15 @@ on :
                 type : boolean
                 default : false
 
+env: 
+    MY_WORKFLOW_VAR : "workflow variable"
+    MY_OVERRIDDEN_VAR : "workflow variable"
 jobs: 
     echo-data : 
          runs-on: ubuntu-latest
+         env : 
+            MY_JOB_VAR : "job variable"
+            MY_OVERRIDDEN_VAR : "job variable"
          steps : 
              - name : Display Information
                run : | 
@@ -24,4 +30,13 @@ jobs:
             
              - name : Retrieve Variable
                run : echo "My variable is ${{ vars.MY_VAR }}"
-        
+             - name : Print Env Variables
+               env :
+                 MY_OVERRIDDEN_VAR : "step variable"
+               run : |
+                  echo "Workflow env : ${{ env.MY_WORKFLOW_VAR }}"
+                  echo "Overriden env : ${{ env.MY_OVERRIDDEN_VAR }}"
+             - name : Print Env Variables
+               run : |
+                  echo "Workflow env : ${{ env.MY_WORKFLOW_VAR }}"
+                  echo "Overriden env : ${{ env.MY_OVERRIDDEN_VAR }}"
