@@ -1,0 +1,37 @@
+name: 08 - Using Variables
+
+on: 
+    push:
+    workflow_dispatch:
+
+env : 
+    WORKFLOW_VAR : "This is a global workflow variable"
+    OVERRIDE_VAR : "This is a global variable to be overridden"
+
+
+jobs:
+    echo:
+        runs-on : ubuntu-latest
+        env:
+            JOB_VAR : "This is a job variable"
+            OVERRIDE_VAR : "This is a job variable that overrides the global variable"
+        steps:
+            - name: Print Env Variables
+              env:
+                  STEP_VAR : "This is a step variable"
+                  step_var_lower : "This is a lowercase step variable"
+              run: |
+                    echo "STEP_VAR : ${{ env.STEP_VAR }}"
+                    echo "step_var_lower : $step_var_lower"
+                    echo "JOB_VAR : ${{ env.JOB_VAR }}"
+                    echo "WORKFLOW_VAR : ${{ env.WORKFLOW_VAR }}"
+                    echo "OVERRIDE_VAR : ${{ env.OVERRIDE_VAR }}"
+
+            - name: Override a job variable
+              env:
+                  OVERRIDE_VAR : "This is a step variable that overrides the job and global variable
+              run: |
+                    echo "OVERRIDE_VAR : ${{ env.OVERRIDE_VAR }}"
+
+                
+        
