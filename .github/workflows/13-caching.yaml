@@ -1,6 +1,12 @@
 name : 13 - Working with Caching
 
-on : workflow_dispatch
+on : 
+    workflow_dispatch :
+        inputs : 
+            use-cache : 
+              description : 'Use cache?'
+              type : boolean
+              default : true
 
         # 0. checkout code from repository
         # 1. install dependencies
