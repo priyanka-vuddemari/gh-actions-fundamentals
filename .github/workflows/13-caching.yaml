@@ -1,0 +1,30 @@
+name : 04 - Working with Caching
+
+on : workflow_dispatch
+
+        # 0. checkout code from repository
+        # 1. install dependencies
+        # 2. run tests
+
+jobs:
+    build : 
+        runs-on : ubuntu-latest
+        defaults :
+            run : 
+              working-directory : ./04-using-actions/react-app 
+        steps : 
+            - name : Checkout code
+              uses : actions/checkout@v4
+            - name : Set up node
+              uses : actions/setup-node@v3
+              with : 
+                  node-version : '20.x'
+            - name : Install dependencies
+              run : npm ci
+            - name : Run Unit tests
+              run : npm run test
+            - name : Building the app
+              run : npm run build
+            - name : Deploy to non prod
+              run : echo "Deploying to non prod"
+            
