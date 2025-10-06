@@ -18,7 +18,9 @@ jobs:
                 echo "Building the project..."
     unit-test:
         runs-on: ubuntu-latest
-        continue-on-error: true
+        # below command is to continue the workflow even if this job fails , this is used when u want to continue the workflow even if this job fails  
+        # this also marks workflow as successful even if this job fails
+        # continue-on-error: true
         steps : 
           - name : Run Unit Tests
             run : |
