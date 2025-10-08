@@ -26,8 +26,13 @@ jobs:
                 - name : Install dependencies
                   if : steps.cache.outputs.cache-hit != 'true'
                   run : npm ci
-                - name : Run Unit tests
-                  run : npm run test
+                - name : Unit tests  
+                  run : npm run test -- --coverage
+                - name: Upload test results
+                  uses: actions/upload-artifact@v4
+                  with:
+                    name: test-results
+                    path : ./04-using-actions/react-app/coverage
                 - name : Build the app
                   run : npm run build
                 - name : Upload build files
