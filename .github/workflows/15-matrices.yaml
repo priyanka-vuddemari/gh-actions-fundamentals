@@ -48,6 +48,9 @@ jobs:
             include:
                 - color : red
                   shape : traiangle
+       steps:
+           - name : Print matrix values
+             run  :  echo ${{ matrix.color }} - ${{ matrix.shape }} - ${{ matrix.size }}
 
 
 
