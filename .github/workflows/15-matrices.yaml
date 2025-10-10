@@ -8,17 +8,36 @@ jobs:
         name : Test Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
         runs-on : ${{ matrix.os}}
         strategy:
+            fail-fast : false
             matrix:
                 node-version: [18.x, 20.x, 21.x]
                 os: 
                     - ubuntu-latest
                     - windows-latest
+            include:
+                -  os : ubuntu-latest
+                   node-version : 16.x
+                - os : ubuntu-latest
+                  node-version : 21.x
+                  tag : experimental
         steps:
            - name : Setup Node
              uses : actions/setup-node@v3
              with :
                 node-version : ${{ matrix.node-version }}
+           - name: Fail if experimental on unsupported OS
+             if  : ${{ matrix.tag == 'experimental' }}
+             run : |
+                exit 1
            - name : Check Node version
-             run : echo "Running on node ${{ matrix.node-version }} on os ${{ matrix.os }}"
+             run : 
+                |
+                echo "Running on node ${{ matrix.node-version }} on os ${{ matrix.os }}"
+                sleep 10
+           - name : Show matrix
+             run : echo ${{ toJson(matrix) }}
+        
+
+
         
 
