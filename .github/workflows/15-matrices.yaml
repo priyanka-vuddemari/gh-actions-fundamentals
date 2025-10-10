@@ -34,8 +34,8 @@ jobs:
                 |
                 echo "Running on node ${{ matrix.node-version }} on os ${{ matrix.os }}"
                 sleep 10
-           - name : Show matrix
-             run : echo ${{ toJson(matrix) }}
+           - name : Upload test results
+             run  : echo "Uploading test results..."
         
 
 
