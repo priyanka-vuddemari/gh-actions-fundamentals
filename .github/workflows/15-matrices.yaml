@@ -37,7 +37,7 @@ jobs:
            - name : Upload test results
              run  : echo "Uploading test results..."
   
-    include-example: 
+    include-exclude-example: 
        name : ${{ matrix.color }} - ${{ matrix.shape }} - ${{ matrix.size }}
        runs-on : ubuntu-latest
        strategy:
@@ -48,6 +48,13 @@ jobs:
             include:
                 - color : red
                   shape : traiangle
+                - color : green
+                  shape : square
+                  size  : medium
+            # below option is executed before include
+            exclude:
+                - color : green
+                  shape : square
        steps:
            - name : Print matrix values
              run  :  echo ${{ matrix.color }} - ${{ matrix.shape }} - ${{ matrix.size }}
