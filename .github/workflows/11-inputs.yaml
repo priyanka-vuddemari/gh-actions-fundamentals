@@ -18,6 +18,11 @@ on:
                     - v1.1
                     - v2.0
                 default: v2.0
+            check:
+                description : needed
+                type: string
+                default : yes
+                required : true
 
 
 jobs :
