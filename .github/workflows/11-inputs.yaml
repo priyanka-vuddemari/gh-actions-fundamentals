@@ -18,7 +18,9 @@ on:
                     - v1.1
                     - v2.0
                 default: v2.0
-                
+            run:
+            type : boolean
+            required: true
 
 
 jobs :
